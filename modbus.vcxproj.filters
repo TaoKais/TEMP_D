@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Header Files\modbus">
+      <UniqueIdentifier>{63b69248-4075-4c19-8cad-60bf10ad788c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\curl">
+      <UniqueIdentifier>{2636d5fc-edf3-4529-8a2e-9fdfd3e17237}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libcurl">
+      <UniqueIdentifier>{26d3fc6a-6d68-4820-a1ef-5c476d62e97f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="include\Source Files\modbus-rtu.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="include\Source Files\modbus-tcp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="include\Source Files\modbus.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="include\Source Files\modbus-data.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Final.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="include\Resource Files\modbus.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Header Files\config.h">
+      <Filter>Header Files\modbus</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Header Files\modbus.h">
+      <Filter>Header Files\modbus</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Header Files\modbus-private.h">
+      <Filter>Header Files\modbus</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Header Files\modbus-rtu.h">
+      <Filter>Header Files\modbus</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Header Files\modbus-rtu-private.h">
+      <Filter>Header Files\modbus</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Header Files\modbus-tcp.h">
+      <Filter>Header Files\modbus</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Header Files\modbus-tcp-private.h">
+      <Filter>Header Files\modbus</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Header Files\modbus-version.h">
+      <Filter>Header Files\modbus</Filter>
+    </ClInclude>
+    <ClInclude Include="include\curl\x64 Debug\include\curl\stdcheaders.h">
+      <Filter>Header Files\curl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\curl\x64 Debug\include\curl\system.h">
+      <Filter>Header Files\curl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\curl\x64 Debug\include\curl\typecheck-gcc.h">
+      <Filter>Header Files\curl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\curl\x64 Debug\include\curl\urlapi.h">
+      <Filter>Header Files\curl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\curl\x64 Debug\include\curl\websockets.h">
+      <Filter>Header Files\curl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\curl\x64 Debug\include\curl\curl.h">
+      <Filter>Header Files\curl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\curl\x64 Debug\include\curl\curlver.h">
+      <Filter>Header Files\curl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\curl\x64 Debug\include\curl\easy.h">
+      <Filter>Header Files\curl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\curl\x64 Debug\include\curl\header.h">
+      <Filter>Header Files\curl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\curl\x64 Debug\include\curl\mprintf.h">
+      <Filter>Header Files\curl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\curl\x64 Debug\include\curl\multi.h">
+      <Filter>Header Files\curl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\curl\x64 Debug\include\curl\options.h">
+      <Filter>Header Files\curl</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="include\Resource Files\RCa00992">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="include\curl\x64 Debug\lib\libcurl_a_debug.lib">
+      <Filter>libcurl</Filter>
+    </Library>
+    <Library Include="include\curl\x64 Release\lib\libcurl_a.lib">
+      <Filter>libcurl</Filter>
+    </Library>
+  </ItemGroup>
+</Project>
