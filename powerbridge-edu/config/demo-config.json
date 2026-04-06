@@ -1,0 +1,15 @@
+{
+  "site_name": "UPV Demo Lab",
+  "source_name": "simulator",
+  "csv_path": "data/telemetry.csv",
+  "phases": ["L1", "L2", "L3", "N"],
+  "enabled_metrics": [
+    "voltage",
+    "current",
+    "active_power",
+    "apparent_power",
+    "reactive_power",
+    "power_factor",
+    "frequency"
+  ]
+}
