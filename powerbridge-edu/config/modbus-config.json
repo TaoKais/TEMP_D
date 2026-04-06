@@ -1,0 +1,43 @@
+{
+  "site_name": "UPV Energy Lab",
+  "source_name": "modbus",
+  "csv_path": "data/modbus-telemetry.csv",
+  "phases": ["L1", "L2", "L3", "N"],
+  "enabled_metrics": [
+    "voltage",
+    "current",
+    "active_power",
+    "apparent_power",
+    "reactive_power",
+    "power_factor"
+  ],
+  "modbus_host": "158.42.160.141",
+  "modbus_port": 502,
+  "modbus_unit_id": 1,
+  "modbus_timeout_seconds": 3.0,
+  "register_map": [
+    { "register_key": "voltage", "phase": "L1", "address": 81, "word_order": "abcd" },
+    { "register_key": "voltage", "phase": "L2", "address": 83, "word_order": "abcd" },
+    { "register_key": "voltage", "phase": "L3", "address": 85, "word_order": "abcd" },
+    { "register_key": "voltage", "phase": "N", "address": 87, "word_order": "abcd" },
+    { "register_key": "current", "phase": "L1", "address": 89, "word_order": "abcd" },
+    { "register_key": "current", "phase": "L2", "address": 91, "word_order": "abcd" },
+    { "register_key": "current", "phase": "L3", "address": 93, "word_order": "abcd" },
+    { "register_key": "current", "phase": "N", "address": 95, "word_order": "abcd" },
+    { "register_key": "active_power", "phase": "L1", "address": 97, "word_order": "abcd" },
+    { "register_key": "active_power", "phase": "L2", "address": 99, "word_order": "abcd" },
+    { "register_key": "active_power", "phase": "L3", "address": 101, "word_order": "abcd" },
+    { "register_key": "active_power", "phase": "N", "address": 103, "word_order": "abcd" },
+    { "register_key": "apparent_power", "phase": "L1", "address": 105, "word_order": "abcd" },
+    { "register_key": "apparent_power", "phase": "L2", "address": 107, "word_order": "abcd" },
+    { "register_key": "apparent_power", "phase": "L3", "address": 109, "word_order": "abcd" },
+    { "register_key": "reactive_power", "phase": "L1", "address": 111, "word_order": "abcd" },
+    { "register_key": "reactive_power", "phase": "L2", "address": 113, "word_order": "abcd" },
+    { "register_key": "reactive_power", "phase": "L3", "address": 115, "word_order": "abcd" },
+    { "register_key": "reactive_power", "phase": "N", "address": 117, "word_order": "abcd" },
+    { "register_key": "power_factor", "phase": "L1", "address": 119, "word_order": "abcd" },
+    { "register_key": "power_factor", "phase": "L2", "address": 121, "word_order": "abcd" },
+    { "register_key": "power_factor", "phase": "L3", "address": 123, "word_order": "abcd" },
+    { "register_key": "power_factor", "phase": "N", "address": 125, "word_order": "abcd" }
+  ]
+}
