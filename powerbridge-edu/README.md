@@ -118,6 +118,8 @@ This launches:
 - `collector` writing simulator telemetry every 5 seconds
 - InfluxDB on `http://localhost:8086`
 - Grafana on `http://localhost:3000`
+- a provisioned Grafana datasource pointing at InfluxDB
+- a provisioned dashboard named `PowerBridge Overview`
 
 Default local credentials:
 
@@ -127,6 +129,8 @@ Default local credentials:
 - Grafana password: `adminadmin`
 
 The compose deployment uses `config/deployment-config.json` and writes to the `telemetry` bucket in InfluxDB.
+
+After Grafana starts, open the `PowerBridge / PowerBridge Overview` dashboard.
 
 To stop it:
 
@@ -212,4 +216,4 @@ python -m powerbridge_edu --config config/deployment-config.json --forever --int
 2. Add a small REST API or MQTT publisher for classroom demos.
 3. Package dashboards and sample datasets.
 4. Add batch polling and retry logic for noisy field networks.
-5. Add Grafana provisioning for dashboards and datasources.
+5. Add alert rules and dashboard variables for device selection.

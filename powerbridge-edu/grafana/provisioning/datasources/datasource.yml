@@ -1,0 +1,16 @@
+apiVersion: 1
+
+datasources:
+  - name: PowerBridge InfluxDB
+    uid: powerbridge-influxdb
+    type: influxdb
+    access: proxy
+    url: http://influxdb:8086
+    isDefault: true
+    jsonData:
+      version: Flux
+      organization: powerbridge
+      defaultBucket: telemetry
+      tlsSkipVerify: true
+    secureJsonData:
+      token: powerbridge-dev-token

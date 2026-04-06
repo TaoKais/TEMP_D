@@ -1,0 +1,11 @@
+apiVersion: 1
+
+providers:
+  - name: PowerBridge Dashboards
+    orgId: 1
+    folder: PowerBridge
+    type: file
+    disableDeletion: false
+    editable: true
+    options:
+      path: /etc/grafana/provisioning/dashboards/json
