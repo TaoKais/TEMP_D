@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 import json
+import os
 from pathlib import Path
 
 from .models import RegisterSpec
@@ -19,6 +20,13 @@ class AppConfig:
     modbus_unit_id: int
     modbus_timeout_seconds: float
     register_map: list[RegisterSpec]
+    polling_interval_seconds: float
+    influx_enabled: bool
+    influx_url: str | None
+    influx_org: str | None
+    influx_bucket: str | None
+    influx_token: str | None
+    influx_measurement: str
 
 
 def load_config(path: str) -> AppConfig:
@@ -42,4 +50,20 @@ def load_config(path: str) -> AppConfig:
             )
             for item in data.get("register_map", [])
         ],
+        polling_interval_seconds=float(data.get("polling_interval_seconds", 5.0)),
+        influx_enabled=_env_or_value("POWERBRIDGE_INFLUX_ENABLED", data.get("influx_enabled", False)).lower() in {"1", "true", "yes", "on"},
+        influx_url=_env_or_value("POWERBRIDGE_INFLUX_URL", data.get("influx_url")),
+        influx_org=_env_or_value("POWERBRIDGE_INFLUX_ORG", data.get("influx_org")),
+        influx_bucket=_env_or_value("POWERBRIDGE_INFLUX_BUCKET", data.get("influx_bucket")),
+        influx_token=_env_or_value("POWERBRIDGE_INFLUX_TOKEN", data.get("influx_token")),
+        influx_measurement=str(_env_or_value("POWERBRIDGE_INFLUX_MEASUREMENT", data.get("influx_measurement", "powerbridge"))),
     )
+
+
+def _env_or_value(name: str, value: object) -> str:
+    env_value = os.getenv(name)
+    if env_value is not None:
+        return env_value
+    if value is None:
+        return ""
+    return str(value)

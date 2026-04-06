@@ -32,7 +32,7 @@ The first version included here is intentionally small and runnable:
 - `simulator` generates realistic three-phase electrical measurements
 - `collector` supports simulator mode and direct Modbus TCP reads
 - `mapping` converts register-oriented data into telemetry events
-- `sinks` write events to stdout and CSV
+- `sinks` write events to stdout, CSV, and InfluxDB
 - `config` is externalized in JSON
 
 InfluxDB, Grafana, and MQTT can be added next without changing the overall structure.
@@ -43,6 +43,7 @@ InfluxDB, Grafana, and MQTT can be added next without changing the overall struc
 powerbridge-edu/
   config/
     demo-config.json
+    deployment-config.json
   data/
   src/powerbridge_edu/
     __init__.py
@@ -54,6 +55,8 @@ powerbridge-edu/
     models.py
     simulator.py
     sinks.py
+  Dockerfile
+  docker-compose.yml
   pyproject.toml
   README.md
 ```
@@ -95,6 +98,42 @@ http://127.0.0.1:8010
 
 The page refreshes automatically and shows live simulated telemetry by metric and phase.
 
+## Local deployment from GitHub
+
+Clone your own repository copy:
+
+```powershell
+git clone https://github.com/TaoKais/TEMP_D.git
+cd TEMP_D\powerbridge-edu
+```
+
+Start the local deployment stack:
+
+```powershell
+docker compose up --build
+```
+
+This launches:
+
+- `collector` writing simulator telemetry every 5 seconds
+- InfluxDB on `http://localhost:8086`
+- Grafana on `http://localhost:3000`
+
+Default local credentials:
+
+- InfluxDB username: `admin`
+- InfluxDB password: `adminadmin`
+- Grafana username: `admin`
+- Grafana password: `adminadmin`
+
+The compose deployment uses `config/deployment-config.json` and writes to the `telemetry` bucket in InfluxDB.
+
+To stop it:
+
+```powershell
+docker compose down
+```
+
 ## Run with a real Modbus TCP device
 
 A sample config is included at `config/modbus-config.json`.
@@ -124,6 +163,12 @@ The main config fields are:
 - `modbus_port`: usually `502`
 - `modbus_unit_id`: Modbus slave id
 - `register_map`: list of metric-to-address mappings
+- `influx_enabled`: enable or disable the InfluxDB sink
+- `influx_url`: InfluxDB base URL
+- `influx_org`: InfluxDB organization name
+- `influx_bucket`: target bucket
+- `influx_token`: API token
+- `polling_interval_seconds`: delay between polling cycles in continuous mode
 
 Each register map entry looks like:
 
@@ -143,10 +188,28 @@ Supported `word_order` values:
 - `cdab`
 - `dcba`
 
+Environment variables can override the InfluxDB settings in deployment:
+
+- `POWERBRIDGE_INFLUX_ENABLED`
+- `POWERBRIDGE_INFLUX_URL`
+- `POWERBRIDGE_INFLUX_ORG`
+- `POWERBRIDGE_INFLUX_BUCKET`
+- `POWERBRIDGE_INFLUX_TOKEN`
+- `POWERBRIDGE_INFLUX_MEASUREMENT`
+
+## Continuous collection
+
+Run the collector continuously without Docker:
+
+```powershell
+$env:PYTHONPATH = "src"
+python -m powerbridge_edu --config config/deployment-config.json --forever --interval-seconds 5
+```
+
 ## Near-term roadmap
 
-1. Add an InfluxDB sink and line protocol output.
-2. Add alarm rules for imbalance, power factor, and harmonic thresholds.
-3. Add a small REST API or MQTT publisher for classroom demos.
-4. Package dashboards and sample datasets.
-5. Add batch polling and retry logic for noisy field networks.
+1. Add alarm rules for imbalance, power factor, and harmonic thresholds.
+2. Add a small REST API or MQTT publisher for classroom demos.
+3. Package dashboards and sample datasets.
+4. Add batch polling and retry logic for noisy field networks.
+5. Add Grafana provisioning for dashboards and datasources.

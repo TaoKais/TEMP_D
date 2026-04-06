@@ -2,6 +2,7 @@
   "site_name": "UPV Energy Lab",
   "source_name": "modbus",
   "csv_path": "data/modbus-telemetry.csv",
+  "polling_interval_seconds": 5,
   "phases": ["L1", "L2", "L3", "N"],
   "enabled_metrics": [
     "voltage",
@@ -15,6 +16,12 @@
   "modbus_port": 502,
   "modbus_unit_id": 1,
   "modbus_timeout_seconds": 3.0,
+  "influx_enabled": false,
+  "influx_url": "",
+  "influx_org": "",
+  "influx_bucket": "",
+  "influx_token": "",
+  "influx_measurement": "powerbridge",
   "register_map": [
     { "register_key": "voltage", "phase": "L1", "address": 81, "word_order": "abcd" },
     { "register_key": "voltage", "phase": "L2", "address": 83, "word_order": "abcd" },

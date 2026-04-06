@@ -1,0 +1,57 @@
+services:
+  influxdb:
+    image: influxdb:2.7
+    container_name: powerbridge-influxdb
+    ports:
+      - "8086:8086"
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: admin
+      DOCKER_INFLUXDB_INIT_PASSWORD: adminadmin
+      DOCKER_INFLUXDB_INIT_ORG: powerbridge
+      DOCKER_INFLUXDB_INIT_BUCKET: telemetry
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: powerbridge-dev-token
+    volumes:
+      - influxdb-data:/var/lib/influxdb2
+
+  grafana:
+    image: grafana/grafana:10.4.3
+    container_name: powerbridge-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: adminadmin
+    depends_on:
+      - influxdb
+    volumes:
+      - grafana-data:/var/lib/grafana
+
+  collector:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: powerbridge-collector
+    depends_on:
+      - influxdb
+    environment:
+      POWERBRIDGE_INFLUX_ENABLED: "true"
+      POWERBRIDGE_INFLUX_URL: http://influxdb:8086
+      POWERBRIDGE_INFLUX_ORG: powerbridge
+      POWERBRIDGE_INFLUX_BUCKET: telemetry
+      POWERBRIDGE_INFLUX_TOKEN: powerbridge-dev-token
+    volumes:
+      - ./data:/app/data
+    command:
+      - python
+      - -m
+      - powerbridge_edu
+      - --config
+      - config/deployment-config.json
+      - --forever
+      - --interval-seconds
+      - "5"
+
+volumes:
+  influxdb-data:
+  grafana-data:

@@ -1,7 +1,7 @@
 {
-  "site_name": "UPV Demo Lab",
+  "site_name": "Local Deployment",
   "source_name": "simulator",
-  "csv_path": "data/telemetry.csv",
+  "csv_path": "data/deployment-telemetry.csv",
   "polling_interval_seconds": 5,
   "phases": ["L1", "L2", "L3", "N"],
   "enabled_metrics": [
@@ -13,10 +13,10 @@
     "power_factor",
     "frequency"
   ],
-  "influx_enabled": false,
-  "influx_url": "",
-  "influx_org": "",
-  "influx_bucket": "",
-  "influx_token": "",
+  "influx_enabled": true,
+  "influx_url": "http://influxdb:8086",
+  "influx_org": "powerbridge",
+  "influx_bucket": "telemetry",
+  "influx_token": "powerbridge-dev-token",
   "influx_measurement": "powerbridge"
 }
